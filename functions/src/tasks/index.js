@@ -24,6 +24,7 @@ exports.getTasks = (req, res) => {
         thisTask.id = doc.id
         ourTasks.push(thisTask)
       })
+      res.set('Cache-Control', 'public, max-age=90, s-maxage=120')
       res.send(ourTasks)
     })
     .catch((err) => res.status(500).send('Error getting tasks: ' + err.message))
